@@ -12,7 +12,7 @@
 | Muhammad Awais | SP23-BCT-040 | Security Analyst |
 | Muhammad Umair Nazir | SP23-BCT-038 | DevSecOps Engineer |
 
-**Instructor:** Engr. Muhammad Ahmad Nawaz
+**Instructor:** Muhammad Ahmad Nawaz
 
 ---
 

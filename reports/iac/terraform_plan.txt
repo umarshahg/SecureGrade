@@ -1,0 +1,1001 @@
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [32m+[0m create[0m
+
+Terraform will perform the following actions:
+
+[1m  # kubernetes_config_map.app_config[0m will be created
+[0m  [32m+[0m[0m resource "kubernetes_config_map" "app_config" {
+      [32m+[0m[0m data = {
+          [32m+[0m[0m "DB_HOST"    = "postgres.data.svc.cluster.local"
+          [32m+[0m[0m "DB_NAME"    = "securegarde"
+          [32m+[0m[0m "DB_PORT"    = "5432"
+          [32m+[0m[0m "DB_USER"    = "auth_service_user"
+          [32m+[0m[0m "NODE_ENV"   = "production"
+          [32m+[0m[0m "REDIS_HOST" = "redis.data.svc.cluster.local"
+          [32m+[0m[0m "REDIS_PORT" = "6379"
+        }
+      [32m+[0m[0m id   = (known after apply)
+
+      [32m+[0m[0m metadata {
+          [32m+[0m[0m generation       = (known after apply)
+          [32m+[0m[0m name             = "app-config"
+          [32m+[0m[0m namespace        = "portal-prod"
+          [32m+[0m[0m resource_version = (known after apply)
+          [32m+[0m[0m uid              = (known after apply)
+        }
+    }
+
+[1m  # kubernetes_deployment.admin_service[0m will be created
+[0m  [32m+[0m[0m resource "kubernetes_deployment" "admin_service" {
+      [32m+[0m[0m id               = (known after apply)
+      [32m+[0m[0m wait_for_rollout = true
+
+      [32m+[0m[0m metadata {
+          [32m+[0m[0m generation       = (known after apply)
+          [32m+[0m[0m labels           = {
+              [32m+[0m[0m "app"         = "securegarde"
+              [32m+[0m[0m "environment" = "production"
+              [32m+[0m[0m "managed_by"  = "terraform"
+              [32m+[0m[0m "service"     = "admin"
+            }
+          [32m+[0m[0m name             = "admin-service"
+          [32m+[0m[0m namespace        = "portal-prod"
+          [32m+[0m[0m resource_version = (known after apply)
+          [32m+[0m[0m uid              = (known after apply)
+        }
+
+      [32m+[0m[0m spec {
+          [32m+[0m[0m min_ready_seconds         = 0
+          [32m+[0m[0m paused                    = false
+          [32m+[0m[0m progress_deadline_seconds = 600
+          [32m+[0m[0m replicas                  = "1"
+          [32m+[0m[0m revision_history_limit    = 10
+
+          [32m+[0m[0m selector {
+              [32m+[0m[0m match_labels = {
+                  [32m+[0m[0m "app" = "admin-service"
+                }
+            }
+
+          [32m+[0m[0m template {
+              [32m+[0m[0m metadata {
+                  [32m+[0m[0m generation       = (known after apply)
+                  [32m+[0m[0m labels           = {
+                      [32m+[0m[0m "app" = "admin-service"
+                    }
+                  [32m+[0m[0m name             = (known after apply)
+                  [32m+[0m[0m resource_version = (known after apply)
+                  [32m+[0m[0m uid              = (known after apply)
+                }
+              [32m+[0m[0m spec {
+                  [32m+[0m[0m automount_service_account_token  = true
+                  [32m+[0m[0m dns_policy                       = "ClusterFirst"
+                  [32m+[0m[0m enable_service_links             = true
+                  [32m+[0m[0m host_ipc                         = false
+                  [32m+[0m[0m host_network                     = false
+                  [32m+[0m[0m host_pid                         = false
+                  [32m+[0m[0m hostname                         = (known after apply)
+                  [32m+[0m[0m node_name                        = (known after apply)
+                  [32m+[0m[0m restart_policy                   = "Always"
+                  [32m+[0m[0m scheduler_name                   = (known after apply)
+                  [32m+[0m[0m service_account_name             = (known after apply)
+                  [32m+[0m[0m share_process_namespace          = false
+                  [32m+[0m[0m termination_grace_period_seconds = 30
+
+                  [32m+[0m[0m container {
+                      [32m+[0m[0m image                      = "securegarde-admin-service:latest"
+                      [32m+[0m[0m image_pull_policy          = "Never"
+                      [32m+[0m[0m name                       = "admin-service"
+                      [32m+[0m[0m stdin                      = false
+                      [32m+[0m[0m stdin_once                 = false
+                      [32m+[0m[0m termination_message_path   = "/dev/termination-log"
+                      [32m+[0m[0m termination_message_policy = (known after apply)
+                      [32m+[0m[0m tty                        = false
+
+                      [32m+[0m[0m env {
+                          [32m+[0m[0m name  = "PORT"
+                          [32m+[0m[0m value = "3004"
+                        }
+                      [32m+[0m[0m env {
+                          [32m+[0m[0m name = "DB_PASSWORD"
+
+                          [32m+[0m[0m value_from {
+                              [32m+[0m[0m secret_key_ref {
+                                  [32m+[0m[0m key  = "DB_PASSWORD"
+                                  [32m+[0m[0m name = "app-secrets"
+                                }
+                            }
+                        }
+
+                      [32m+[0m[0m env_from {
+                          [32m+[0m[0m config_map_ref {
+                              [32m+[0m[0m name = "app-config"
+                            }
+                        }
+
+                      [32m+[0m[0m liveness_probe {
+                          [32m+[0m[0m failure_threshold     = 3
+                          [32m+[0m[0m initial_delay_seconds = 30
+                          [32m+[0m[0m period_seconds        = 10
+                          [32m+[0m[0m success_threshold     = 1
+                          [32m+[0m[0m timeout_seconds       = 1
+
+                          [32m+[0m[0m http_get {
+                              [32m+[0m[0m path   = "/health"
+                              [32m+[0m[0m port   = "3004"
+                              [32m+[0m[0m scheme = "HTTP"
+                            }
+                        }
+
+                      [32m+[0m[0m port {
+                          [32m+[0m[0m container_port = 3004
+                          [32m+[0m[0m protocol       = "TCP"
+                        }
+
+                      [32m+[0m[0m resources {
+                          [32m+[0m[0m limits   = {
+                              [32m+[0m[0m "cpu"    = "200m"
+                              [32m+[0m[0m "memory" = "256Mi"
+                            }
+                          [32m+[0m[0m requests = {
+                              [32m+[0m[0m "cpu"    = "100m"
+                              [32m+[0m[0m "memory" = "128Mi"
+                            }
+                        }
+
+                      [32m+[0m[0m security_context {
+                          [32m+[0m[0m allow_privilege_escalation = false
+                          [32m+[0m[0m privileged                 = false
+                          [32m+[0m[0m read_only_root_filesystem  = true
+                          [32m+[0m[0m run_as_non_root            = true
+                          [32m+[0m[0m run_as_user                = "1000"
+
+                          [32m+[0m[0m capabilities {
+                              [32m+[0m[0m drop = [
+                                  [32m+[0m[0m "ALL",
+                                ]
+                            }
+                        }
+
+                      [32m+[0m[0m volume_mount {
+                          [32m+[0m[0m mount_path        = "/tmp"
+                          [32m+[0m[0m mount_propagation = "None"
+                          [32m+[0m[0m name              = "tmp"
+                          [32m+[0m[0m read_only         = false
+                        }
+                    }
+
+                  [32m+[0m[0m security_context {
+                      [32m+[0m[0m fs_group        = "1000"
+                      [32m+[0m[0m run_as_group    = "1000"
+                      [32m+[0m[0m run_as_non_root = true
+                      [32m+[0m[0m run_as_user     = "1000"
+                    }
+
+                  [32m+[0m[0m volume {
+                      [32m+[0m[0m name = "tmp"
+
+                      [32m+[0m[0m empty_dir {}
+                    }
+                }
+            }
+        }
+    }
+
+[1m  # kubernetes_deployment.auth_service[0m will be created
+[0m  [32m+[0m[0m resource "kubernetes_deployment" "auth_service" {
+      [32m+[0m[0m id               = (known after apply)
+      [32m+[0m[0m wait_for_rollout = true
+
+      [32m+[0m[0m metadata {
+          [32m+[0m[0m generation       = (known after apply)
+          [32m+[0m[0m labels           = {
+              [32m+[0m[0m "app"         = "securegarde"
+              [32m+[0m[0m "environment" = "production"
+              [32m+[0m[0m "managed_by"  = "terraform"
+              [32m+[0m[0m "service"     = "auth"
+            }
+          [32m+[0m[0m name             = "auth-service"
+          [32m+[0m[0m namespace        = "portal-prod"
+          [32m+[0m[0m resource_version = (known after apply)
+          [32m+[0m[0m uid              = (known after apply)
+        }
+
+      [32m+[0m[0m spec {
+          [32m+[0m[0m min_ready_seconds         = 0
+          [32m+[0m[0m paused                    = false
+          [32m+[0m[0m progress_deadline_seconds = 600
+          [32m+[0m[0m replicas                  = "1"
+          [32m+[0m[0m revision_history_limit    = 10
+
+          [32m+[0m[0m selector {
+              [32m+[0m[0m match_labels = {
+                  [32m+[0m[0m "app" = "auth-service"
+                }
+            }
+
+          [32m+[0m[0m template {
+              [32m+[0m[0m metadata {
+                  [32m+[0m[0m generation       = (known after apply)
+                  [32m+[0m[0m labels           = {
+                      [32m+[0m[0m "app" = "auth-service"
+                    }
+                  [32m+[0m[0m name             = (known after apply)
+                  [32m+[0m[0m resource_version = (known after apply)
+                  [32m+[0m[0m uid              = (known after apply)
+                }
+              [32m+[0m[0m spec {
+                  [32m+[0m[0m automount_service_account_token  = true
+                  [32m+[0m[0m dns_policy                       = "ClusterFirst"
+                  [32m+[0m[0m enable_service_links             = true
+                  [32m+[0m[0m host_ipc                         = false
+                  [32m+[0m[0m host_network                     = false
+                  [32m+[0m[0m host_pid                         = false
+                  [32m+[0m[0m hostname                         = (known after apply)
+                  [32m+[0m[0m node_name                        = (known after apply)
+                  [32m+[0m[0m restart_policy                   = "Always"
+                  [32m+[0m[0m scheduler_name                   = (known after apply)
+                  [32m+[0m[0m service_account_name             = (known after apply)
+                  [32m+[0m[0m share_process_namespace          = false
+                  [32m+[0m[0m termination_grace_period_seconds = 30
+
+                  [32m+[0m[0m container {
+                      [32m+[0m[0m image                      = "securegarde-auth-service:latest"
+                      [32m+[0m[0m image_pull_policy          = "Never"
+                      [32m+[0m[0m name                       = "auth-service"
+                      [32m+[0m[0m stdin                      = false
+                      [32m+[0m[0m stdin_once                 = false
+                      [32m+[0m[0m termination_message_path   = "/dev/termination-log"
+                      [32m+[0m[0m termination_message_policy = (known after apply)
+                      [32m+[0m[0m tty                        = false
+
+                      [32m+[0m[0m env {
+                          [32m+[0m[0m name  = "PORT"
+                          [32m+[0m[0m value = "3001"
+                        }
+                      [32m+[0m[0m env {
+                          [32m+[0m[0m name = "DB_PASSWORD"
+
+                          [32m+[0m[0m value_from {
+                              [32m+[0m[0m secret_key_ref {
+                                  [32m+[0m[0m key  = "DB_PASSWORD"
+                                  [32m+[0m[0m name = "app-secrets"
+                                }
+                            }
+                        }
+                      [32m+[0m[0m env {
+                          [32m+[0m[0m name = "REDIS_PASSWORD"
+
+                          [32m+[0m[0m value_from {
+                              [32m+[0m[0m secret_key_ref {
+                                  [32m+[0m[0m key  = "REDIS_PASSWORD"
+                                  [32m+[0m[0m name = "app-secrets"
+                                }
+                            }
+                        }
+
+                      [32m+[0m[0m env_from {
+                          [32m+[0m[0m config_map_ref {
+                              [32m+[0m[0m name = "app-config"
+                            }
+                        }
+
+                      [32m+[0m[0m liveness_probe {
+                          [32m+[0m[0m failure_threshold     = 3
+                          [32m+[0m[0m initial_delay_seconds = 30
+                          [32m+[0m[0m period_seconds        = 10
+                          [32m+[0m[0m success_threshold     = 1
+                          [32m+[0m[0m timeout_seconds       = 1
+
+                          [32m+[0m[0m http_get {
+                              [32m+[0m[0m path   = "/health"
+                              [32m+[0m[0m port   = "3001"
+                              [32m+[0m[0m scheme = "HTTP"
+                            }
+                        }
+
+                      [32m+[0m[0m port {
+                          [32m+[0m[0m container_port = 3001
+                          [32m+[0m[0m protocol       = "TCP"
+                        }
+
+                      [32m+[0m[0m readiness_probe {
+                          [32m+[0m[0m failure_threshold     = 3
+                          [32m+[0m[0m initial_delay_seconds = 10
+                          [32m+[0m[0m period_seconds        = 5
+                          [32m+[0m[0m success_threshold     = 1
+                          [32m+[0m[0m timeout_seconds       = 1
+
+                          [32m+[0m[0m http_get {
+                              [32m+[0m[0m path   = "/health"
+                              [32m+[0m[0m port   = "3001"
+                              [32m+[0m[0m scheme = "HTTP"
+                            }
+                        }
+
+                      [32m+[0m[0m resources {
+                          [32m+[0m[0m limits   = {
+                              [32m+[0m[0m "cpu"    = "200m"
+                              [32m+[0m[0m "memory" = "256Mi"
+                            }
+                          [32m+[0m[0m requests = {
+                              [32m+[0m[0m "cpu"    = "100m"
+                              [32m+[0m[0m "memory" = "128Mi"
+                            }
+                        }
+
+                      [32m+[0m[0m security_context {
+                          [32m+[0m[0m allow_privilege_escalation = false
+                          [32m+[0m[0m privileged                 = false
+                          [32m+[0m[0m read_only_root_filesystem  = true
+                          [32m+[0m[0m run_as_non_root            = true
+                          [32m+[0m[0m run_as_user                = "1000"
+
+                          [32m+[0m[0m capabilities {
+                              [32m+[0m[0m drop = [
+                                  [32m+[0m[0m "ALL",
+                                ]
+                            }
+                        }
+
+                      [32m+[0m[0m volume_mount {
+                          [32m+[0m[0m mount_path        = "/tmp"
+                          [32m+[0m[0m mount_propagation = "None"
+                          [32m+[0m[0m name              = "tmp"
+                          [32m+[0m[0m read_only         = false
+                        }
+                    }
+
+                  [32m+[0m[0m security_context {
+                      [32m+[0m[0m fs_group        = "1000"
+                      [32m+[0m[0m run_as_group    = "1000"
+                      [32m+[0m[0m run_as_non_root = true
+                      [32m+[0m[0m run_as_user     = "1000"
+                    }
+
+                  [32m+[0m[0m volume {
+                      [32m+[0m[0m name = "tmp"
+
+                      [32m+[0m[0m empty_dir {}
+                    }
+                }
+            }
+        }
+    }
+
+[1m  # kubernetes_deployment.grade_service[0m will be created
+[0m  [32m+[0m[0m resource "kubernetes_deployment" "grade_service" {
+      [32m+[0m[0m id               = (known after apply)
+      [32m+[0m[0m wait_for_rollout = true
+
+      [32m+[0m[0m metadata {
+          [32m+[0m[0m generation       = (known after apply)
+          [32m+[0m[0m labels           = {
+              [32m+[0m[0m "app"         = "securegarde"
+              [32m+[0m[0m "environment" = "production"
+              [32m+[0m[0m "managed_by"  = "terraform"
+              [32m+[0m[0m "service"     = "grade"
+            }
+          [32m+[0m[0m name             = "grade-service"
+          [32m+[0m[0m namespace        = "portal-prod"
+          [32m+[0m[0m resource_version = (known after apply)
+          [32m+[0m[0m uid              = (known after apply)
+        }
+
+      [32m+[0m[0m spec {
+          [32m+[0m[0m min_ready_seconds         = 0
+          [32m+[0m[0m paused                    = false
+          [32m+[0m[0m progress_deadline_seconds = 600
+          [32m+[0m[0m replicas                  = "1"
+          [32m+[0m[0m revision_history_limit    = 10
+
+          [32m+[0m[0m selector {
+              [32m+[0m[0m match_labels = {
+                  [32m+[0m[0m "app" = "grade-service"
+                }
+            }
+
+          [32m+[0m[0m template {
+              [32m+[0m[0m metadata {
+                  [32m+[0m[0m generation       = (known after apply)
+                  [32m+[0m[0m labels           = {
+                      [32m+[0m[0m "app" = "grade-service"
+                    }
+                  [32m+[0m[0m name             = (known after apply)
+                  [32m+[0m[0m resource_version = (known after apply)
+                  [32m+[0m[0m uid              = (known after apply)
+                }
+              [32m+[0m[0m spec {
+                  [32m+[0m[0m automount_service_account_token  = true
+                  [32m+[0m[0m dns_policy                       = "ClusterFirst"
+                  [32m+[0m[0m enable_service_links             = true
+                  [32m+[0m[0m host_ipc                         = false
+                  [32m+[0m[0m host_network                     = false
+                  [32m+[0m[0m host_pid                         = false
+                  [32m+[0m[0m hostname                         = (known after apply)
+                  [32m+[0m[0m node_name                        = (known after apply)
+                  [32m+[0m[0m restart_policy                   = "Always"
+                  [32m+[0m[0m scheduler_name                   = (known after apply)
+                  [32m+[0m[0m service_account_name             = (known after apply)
+                  [32m+[0m[0m share_process_namespace          = false
+                  [32m+[0m[0m termination_grace_period_seconds = 30
+
+                  [32m+[0m[0m container {
+                      [32m+[0m[0m image                      = "securegarde-grade-service:latest"
+                      [32m+[0m[0m image_pull_policy          = "Never"
+                      [32m+[0m[0m name                       = "grade-service"
+                      [32m+[0m[0m stdin                      = false
+                      [32m+[0m[0m stdin_once                 = false
+                      [32m+[0m[0m termination_message_path   = "/dev/termination-log"
+                      [32m+[0m[0m termination_message_policy = (known after apply)
+                      [32m+[0m[0m tty                        = false
+
+                      [32m+[0m[0m env {
+                          [32m+[0m[0m name  = "PORT"
+                          [32m+[0m[0m value = "3003"
+                        }
+                      [32m+[0m[0m env {
+                          [32m+[0m[0m name = "DB_PASSWORD"
+
+                          [32m+[0m[0m value_from {
+                              [32m+[0m[0m secret_key_ref {
+                                  [32m+[0m[0m key  = "DB_PASSWORD"
+                                  [32m+[0m[0m name = "app-secrets"
+                                }
+                            }
+                        }
+
+                      [32m+[0m[0m env_from {
+                          [32m+[0m[0m config_map_ref {
+                              [32m+[0m[0m name = "app-config"
+                            }
+                        }
+
+                      [32m+[0m[0m liveness_probe {
+                          [32m+[0m[0m failure_threshold     = 3
+                          [32m+[0m[0m initial_delay_seconds = 30
+                          [32m+[0m[0m period_seconds        = 10
+                          [32m+[0m[0m success_threshold     = 1
+                          [32m+[0m[0m timeout_seconds       = 1
+
+                          [32m+[0m[0m http_get {
+                              [32m+[0m[0m path   = "/health"
+                              [32m+[0m[0m port   = "3003"
+                              [32m+[0m[0m scheme = "HTTP"
+                            }
+                        }
+
+                      [32m+[0m[0m port {
+                          [32m+[0m[0m container_port = 3003
+                          [32m+[0m[0m protocol       = "TCP"
+                        }
+
+                      [32m+[0m[0m resources {
+                          [32m+[0m[0m limits   = {
+                              [32m+[0m[0m "cpu"    = "200m"
+                              [32m+[0m[0m "memory" = "256Mi"
+                            }
+                          [32m+[0m[0m requests = {
+                              [32m+[0m[0m "cpu"    = "100m"
+                              [32m+[0m[0m "memory" = "128Mi"
+                            }
+                        }
+
+                      [32m+[0m[0m security_context {
+                          [32m+[0m[0m allow_privilege_escalation = false
+                          [32m+[0m[0m privileged                 = false
+                          [32m+[0m[0m read_only_root_filesystem  = true
+                          [32m+[0m[0m run_as_non_root            = true
+                          [32m+[0m[0m run_as_user                = "1000"
+
+                          [32m+[0m[0m capabilities {
+                              [32m+[0m[0m drop = [
+                                  [32m+[0m[0m "ALL",
+                                ]
+                            }
+                        }
+
+                      [32m+[0m[0m volume_mount {
+                          [32m+[0m[0m mount_path        = "/tmp"
+                          [32m+[0m[0m mount_propagation = "None"
+                          [32m+[0m[0m name              = "tmp"
+                          [32m+[0m[0m read_only         = false
+                        }
+                    }
+
+                  [32m+[0m[0m security_context {
+                      [32m+[0m[0m fs_group        = "1000"
+                      [32m+[0m[0m run_as_group    = "1000"
+                      [32m+[0m[0m run_as_non_root = true
+                      [32m+[0m[0m run_as_user     = "1000"
+                    }
+
+                  [32m+[0m[0m volume {
+                      [32m+[0m[0m name = "tmp"
+
+                      [32m+[0m[0m empty_dir {}
+                    }
+                }
+            }
+        }
+    }
+
+[1m  # kubernetes_deployment.result_service[0m will be created
+[0m  [32m+[0m[0m resource "kubernetes_deployment" "result_service" {
+      [32m+[0m[0m id               = (known after apply)
+      [32m+[0m[0m wait_for_rollout = true
+
+      [32m+[0m[0m metadata {
+          [32m+[0m[0m generation       = (known after apply)
+          [32m+[0m[0m labels           = {
+              [32m+[0m[0m "app"         = "securegarde"
+              [32m+[0m[0m "environment" = "production"
+              [32m+[0m[0m "managed_by"  = "terraform"
+              [32m+[0m[0m "service"     = "result"
+            }
+          [32m+[0m[0m name             = "result-service"
+          [32m+[0m[0m namespace        = "portal-prod"
+          [32m+[0m[0m resource_version = (known after apply)
+          [32m+[0m[0m uid              = (known after apply)
+        }
+
+      [32m+[0m[0m spec {
+          [32m+[0m[0m min_ready_seconds         = 0
+          [32m+[0m[0m paused                    = false
+          [32m+[0m[0m progress_deadline_seconds = 600
+          [32m+[0m[0m replicas                  = "1"
+          [32m+[0m[0m revision_history_limit    = 10
+
+          [32m+[0m[0m selector {
+              [32m+[0m[0m match_labels = {
+                  [32m+[0m[0m "app" = "result-service"
+                }
+            }
+
+          [32m+[0m[0m template {
+              [32m+[0m[0m metadata {
+                  [32m+[0m[0m generation       = (known after apply)
+                  [32m+[0m[0m labels           = {
+                      [32m+[0m[0m "app" = "result-service"
+                    }
+                  [32m+[0m[0m name             = (known after apply)
+                  [32m+[0m[0m resource_version = (known after apply)
+                  [32m+[0m[0m uid              = (known after apply)
+                }
+              [32m+[0m[0m spec {
+                  [32m+[0m[0m automount_service_account_token  = true
+                  [32m+[0m[0m dns_policy                       = "ClusterFirst"
+                  [32m+[0m[0m enable_service_links             = true
+                  [32m+[0m[0m host_ipc                         = false
+                  [32m+[0m[0m host_network                     = false
+                  [32m+[0m[0m host_pid                         = false
+                  [32m+[0m[0m hostname                         = (known after apply)
+                  [32m+[0m[0m node_name                        = (known after apply)
+                  [32m+[0m[0m restart_policy                   = "Always"
+                  [32m+[0m[0m scheduler_name                   = (known after apply)
+                  [32m+[0m[0m service_account_name             = (known after apply)
+                  [32m+[0m[0m share_process_namespace          = false
+                  [32m+[0m[0m termination_grace_period_seconds = 30
+
+                  [32m+[0m[0m container {
+                      [32m+[0m[0m image                      = "securegarde-result-service:latest"
+                      [32m+[0m[0m image_pull_policy          = "Never"
+                      [32m+[0m[0m name                       = "result-service"
+                      [32m+[0m[0m stdin                      = false
+                      [32m+[0m[0m stdin_once                 = false
+                      [32m+[0m[0m termination_message_path   = "/dev/termination-log"
+                      [32m+[0m[0m termination_message_policy = (known after apply)
+                      [32m+[0m[0m tty                        = false
+
+                      [32m+[0m[0m env {
+                          [32m+[0m[0m name  = "PORT"
+                          [32m+[0m[0m value = "3002"
+                        }
+                      [32m+[0m[0m env {
+                          [32m+[0m[0m name = "DB_PASSWORD"
+
+                          [32m+[0m[0m value_from {
+                              [32m+[0m[0m secret_key_ref {
+                                  [32m+[0m[0m key  = "DB_PASSWORD"
+                                  [32m+[0m[0m name = "app-secrets"
+                                }
+                            }
+                        }
+
+                      [32m+[0m[0m env_from {
+                          [32m+[0m[0m config_map_ref {
+                              [32m+[0m[0m name = "app-config"
+                            }
+                        }
+
+                      [32m+[0m[0m liveness_probe {
+                          [32m+[0m[0m failure_threshold     = 3
+                          [32m+[0m[0m initial_delay_seconds = 30
+                          [32m+[0m[0m period_seconds        = 10
+                          [32m+[0m[0m success_threshold     = 1
+                          [32m+[0m[0m timeout_seconds       = 1
+
+                          [32m+[0m[0m http_get {
+                              [32m+[0m[0m path   = "/health"
+                              [32m+[0m[0m port   = "3002"
+                              [32m+[0m[0m scheme = "HTTP"
+                            }
+                        }
+
+                      [32m+[0m[0m port {
+                          [32m+[0m[0m container_port = 3002
+                          [32m+[0m[0m protocol       = "TCP"
+                        }
+
+                      [32m+[0m[0m resources {
+                          [32m+[0m[0m limits   = {
+                              [32m+[0m[0m "cpu"    = "200m"
+                              [32m+[0m[0m "memory" = "256Mi"
+                            }
+                          [32m+[0m[0m requests = {
+                              [32m+[0m[0m "cpu"    = "100m"
+                              [32m+[0m[0m "memory" = "128Mi"
+                            }
+                        }
+
+                      [32m+[0m[0m security_context {
+                          [32m+[0m[0m allow_privilege_escalation = false
+                          [32m+[0m[0m privileged                 = false
+                          [32m+[0m[0m read_only_root_filesystem  = true
+                          [32m+[0m[0m run_as_non_root            = true
+                          [32m+[0m[0m run_as_user                = "1000"
+
+                          [32m+[0m[0m capabilities {
+                              [32m+[0m[0m drop = [
+                                  [32m+[0m[0m "ALL",
+                                ]
+                            }
+                        }
+
+                      [32m+[0m[0m volume_mount {
+                          [32m+[0m[0m mount_path        = "/tmp"
+                          [32m+[0m[0m mount_propagation = "None"
+                          [32m+[0m[0m name              = "tmp"
+                          [32m+[0m[0m read_only         = false
+                        }
+                    }
+
+                  [32m+[0m[0m security_context {
+                      [32m+[0m[0m fs_group        = "1000"
+                      [32m+[0m[0m run_as_group    = "1000"
+                      [32m+[0m[0m run_as_non_root = true
+                      [32m+[0m[0m run_as_user     = "1000"
+                    }
+
+                  [32m+[0m[0m volume {
+                      [32m+[0m[0m name = "tmp"
+
+                      [32m+[0m[0m empty_dir {}
+                    }
+                }
+            }
+        }
+    }
+
+[1m  # kubernetes_namespace.data[0m will be created
+[0m  [32m+[0m[0m resource "kubernetes_namespace" "data" {
+      [32m+[0m[0m id                               = (known after apply)
+      [32m+[0m[0m wait_for_default_service_account = false
+
+      [32m+[0m[0m metadata {
+          [32m+[0m[0m generation       = (known after apply)
+          [32m+[0m[0m labels           = {
+              [32m+[0m[0m "name" = "data"
+            }
+          [32m+[0m[0m name             = "data"
+          [32m+[0m[0m resource_version = (known after apply)
+          [32m+[0m[0m uid              = (known after apply)
+        }
+    }
+
+[1m  # kubernetes_namespace.monitoring[0m will be created
+[0m  [32m+[0m[0m resource "kubernetes_namespace" "monitoring" {
+      [32m+[0m[0m id                               = (known after apply)
+      [32m+[0m[0m wait_for_default_service_account = false
+
+      [32m+[0m[0m metadata {
+          [32m+[0m[0m generation       = (known after apply)
+          [32m+[0m[0m labels           = {
+              [32m+[0m[0m "name" = "monitoring"
+            }
+          [32m+[0m[0m name             = "monitoring"
+          [32m+[0m[0m resource_version = (known after apply)
+          [32m+[0m[0m uid              = (known after apply)
+        }
+    }
+
+[1m  # kubernetes_namespace.portal_prod[0m will be created
+[0m  [32m+[0m[0m resource "kubernetes_namespace" "portal_prod" {
+      [32m+[0m[0m id                               = (known after apply)
+      [32m+[0m[0m wait_for_default_service_account = false
+
+      [32m+[0m[0m metadata {
+          [32m+[0m[0m generation       = (known after apply)
+          [32m+[0m[0m labels           = {
+              [32m+[0m[0m "name"                               = "portal-prod"
+              [32m+[0m[0m "pod-security.kubernetes.io/audit"   = "restricted"
+              [32m+[0m[0m "pod-security.kubernetes.io/enforce" = "restricted"
+              [32m+[0m[0m "pod-security.kubernetes.io/warn"    = "restricted"
+            }
+          [32m+[0m[0m name             = "portal-prod"
+          [32m+[0m[0m resource_version = (known after apply)
+          [32m+[0m[0m uid              = (known after apply)
+        }
+    }
+
+[1m  # kubernetes_namespace.security[0m will be created
+[0m  [32m+[0m[0m resource "kubernetes_namespace" "security" {
+      [32m+[0m[0m id                               = (known after apply)
+      [32m+[0m[0m wait_for_default_service_account = false
+
+      [32m+[0m[0m metadata {
+          [32m+[0m[0m generation       = (known after apply)
+          [32m+[0m[0m labels           = {
+              [32m+[0m[0m "name" = "security"
+            }
+          [32m+[0m[0m name             = "security"
+          [32m+[0m[0m resource_version = (known after apply)
+          [32m+[0m[0m uid              = (known after apply)
+        }
+    }
+
+[1m  # kubernetes_network_policy.allow_auth[0m will be created
+[0m  [32m+[0m[0m resource "kubernetes_network_policy" "allow_auth" {
+      [32m+[0m[0m id = (known after apply)
+
+      [32m+[0m[0m metadata {
+          [32m+[0m[0m generation       = (known after apply)
+          [32m+[0m[0m name             = "allow-auth-ingress"
+          [32m+[0m[0m namespace        = "portal-prod"
+          [32m+[0m[0m resource_version = (known after apply)
+          [32m+[0m[0m uid              = (known after apply)
+        }
+
+      [32m+[0m[0m spec {
+          [32m+[0m[0m policy_types = [
+              [32m+[0m[0m "Ingress",
+              [32m+[0m[0m "Egress",
+            ]
+
+          [32m+[0m[0m egress {
+              [32m+[0m[0m ports {
+                  [32m+[0m[0m port     = "5432"
+                  [32m+[0m[0m protocol = "TCP"
+                }
+              [32m+[0m[0m ports {
+                  [32m+[0m[0m port     = "6379"
+                  [32m+[0m[0m protocol = "TCP"
+                }
+            }
+
+          [32m+[0m[0m ingress {
+              [32m+[0m[0m ports {
+                  [32m+[0m[0m port     = "3001"
+                  [32m+[0m[0m protocol = "TCP"
+                }
+            }
+
+          [32m+[0m[0m pod_selector {
+              [32m+[0m[0m match_labels = {
+                  [32m+[0m[0m "app" = "auth-service"
+                }
+            }
+        }
+    }
+
+[1m  # kubernetes_network_policy.default_deny[0m will be created
+[0m  [32m+[0m[0m resource "kubernetes_network_policy" "default_deny" {
+      [32m+[0m[0m id = (known after apply)
+
+      [32m+[0m[0m metadata {
+          [32m+[0m[0m generation       = (known after apply)
+          [32m+[0m[0m name             = "default-deny-all"
+          [32m+[0m[0m namespace        = "portal-prod"
+          [32m+[0m[0m resource_version = (known after apply)
+          [32m+[0m[0m uid              = (known after apply)
+        }
+
+      [32m+[0m[0m spec {
+          [32m+[0m[0m policy_types = [
+              [32m+[0m[0m "Ingress",
+              [32m+[0m[0m "Egress",
+            ]
+
+          [32m+[0m[0m pod_selector {
+            }
+        }
+    }
+
+[1m  # kubernetes_secret.app_secrets[0m will be created
+[0m  [32m+[0m[0m resource "kubernetes_secret" "app_secrets" {
+      [32m+[0m[0m data                           = (sensitive value)
+      [32m+[0m[0m id                             = (known after apply)
+      [32m+[0m[0m type                           = "Opaque"
+      [32m+[0m[0m wait_for_service_account_token = true
+
+      [32m+[0m[0m metadata {
+          [32m+[0m[0m generation       = (known after apply)
+          [32m+[0m[0m name             = "app-secrets"
+          [32m+[0m[0m namespace        = "portal-prod"
+          [32m+[0m[0m resource_version = (known after apply)
+          [32m+[0m[0m uid              = (known after apply)
+        }
+    }
+
+[1m  # kubernetes_service.admin_service[0m will be created
+[0m  [32m+[0m[0m resource "kubernetes_service" "admin_service" {
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m status                 = (known after apply)
+      [32m+[0m[0m wait_for_load_balancer = true
+
+      [32m+[0m[0m metadata {
+          [32m+[0m[0m generation       = (known after apply)
+          [32m+[0m[0m name             = "admin-service"
+          [32m+[0m[0m namespace        = "portal-prod"
+          [32m+[0m[0m resource_version = (known after apply)
+          [32m+[0m[0m uid              = (known after apply)
+        }
+
+      [32m+[0m[0m spec {
+          [32m+[0m[0m allocate_load_balancer_node_ports = true
+          [32m+[0m[0m cluster_ip                        = (known after apply)
+          [32m+[0m[0m cluster_ips                       = (known after apply)
+          [32m+[0m[0m external_traffic_policy           = (known after apply)
+          [32m+[0m[0m health_check_node_port            = (known after apply)
+          [32m+[0m[0m internal_traffic_policy           = (known after apply)
+          [32m+[0m[0m ip_families                       = (known after apply)
+          [32m+[0m[0m ip_family_policy                  = (known after apply)
+          [32m+[0m[0m publish_not_ready_addresses       = false
+          [32m+[0m[0m selector                          = {
+              [32m+[0m[0m "app" = "admin-service"
+            }
+          [32m+[0m[0m session_affinity                  = "None"
+          [32m+[0m[0m type                              = "ClusterIP"
+
+          [32m+[0m[0m port {
+              [32m+[0m[0m node_port   = (known after apply)
+              [32m+[0m[0m port        = 3004
+              [32m+[0m[0m protocol    = "TCP"
+              [32m+[0m[0m target_port = "3004"
+            }
+        }
+    }
+
+[1m  # kubernetes_service.auth_service[0m will be created
+[0m  [32m+[0m[0m resource "kubernetes_service" "auth_service" {
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m status                 = (known after apply)
+      [32m+[0m[0m wait_for_load_balancer = true
+
+      [32m+[0m[0m metadata {
+          [32m+[0m[0m generation       = (known after apply)
+          [32m+[0m[0m name             = "auth-service"
+          [32m+[0m[0m namespace        = "portal-prod"
+          [32m+[0m[0m resource_version = (known after apply)
+          [32m+[0m[0m uid              = (known after apply)
+        }
+
+      [32m+[0m[0m spec {
+          [32m+[0m[0m allocate_load_balancer_node_ports = true
+          [32m+[0m[0m cluster_ip                        = (known after apply)
+          [32m+[0m[0m cluster_ips                       = (known after apply)
+          [32m+[0m[0m external_traffic_policy           = (known after apply)
+          [32m+[0m[0m health_check_node_port            = (known after apply)
+          [32m+[0m[0m internal_traffic_policy           = (known after apply)
+          [32m+[0m[0m ip_families                       = (known after apply)
+          [32m+[0m[0m ip_family_policy                  = (known after apply)
+          [32m+[0m[0m publish_not_ready_addresses       = false
+          [32m+[0m[0m selector                          = {
+              [32m+[0m[0m "app" = "auth-service"
+            }
+          [32m+[0m[0m session_affinity                  = "None"
+          [32m+[0m[0m type                              = "ClusterIP"
+
+          [32m+[0m[0m port {
+              [32m+[0m[0m node_port   = (known after apply)
+              [32m+[0m[0m port        = 3001
+              [32m+[0m[0m protocol    = "TCP"
+              [32m+[0m[0m target_port = "3001"
+            }
+        }
+    }
+
+[1m  # kubernetes_service.grade_service[0m will be created
+[0m  [32m+[0m[0m resource "kubernetes_service" "grade_service" {
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m status                 = (known after apply)
+      [32m+[0m[0m wait_for_load_balancer = true
+
+      [32m+[0m[0m metadata {
+          [32m+[0m[0m generation       = (known after apply)
+          [32m+[0m[0m name             = "grade-service"
+          [32m+[0m[0m namespace        = "portal-prod"
+          [32m+[0m[0m resource_version = (known after apply)
+          [32m+[0m[0m uid              = (known after apply)
+        }
+
+      [32m+[0m[0m spec {
+          [32m+[0m[0m allocate_load_balancer_node_ports = true
+          [32m+[0m[0m cluster_ip                        = (known after apply)
+          [32m+[0m[0m cluster_ips                       = (known after apply)
+          [32m+[0m[0m external_traffic_policy           = (known after apply)
+          [32m+[0m[0m health_check_node_port            = (known after apply)
+          [32m+[0m[0m internal_traffic_policy           = (known after apply)
+          [32m+[0m[0m ip_families                       = (known after apply)
+          [32m+[0m[0m ip_family_policy                  = (known after apply)
+          [32m+[0m[0m publish_not_ready_addresses       = false
+          [32m+[0m[0m selector                          = {
+              [32m+[0m[0m "app" = "grade-service"
+            }
+          [32m+[0m[0m session_affinity                  = "None"
+          [32m+[0m[0m type                              = "ClusterIP"
+
+          [32m+[0m[0m port {
+              [32m+[0m[0m node_port   = (known after apply)
+              [32m+[0m[0m port        = 3003
+              [32m+[0m[0m protocol    = "TCP"
+              [32m+[0m[0m target_port = "3003"
+            }
+        }
+    }
+
+[1m  # kubernetes_service.result_service[0m will be created
+[0m  [32m+[0m[0m resource "kubernetes_service" "result_service" {
+      [32m+[0m[0m id                     = (known after apply)
+      [32m+[0m[0m status                 = (known after apply)
+      [32m+[0m[0m wait_for_load_balancer = true
+
+      [32m+[0m[0m metadata {
+          [32m+[0m[0m generation       = (known after apply)
+          [32m+[0m[0m name             = "result-service"
+          [32m+[0m[0m namespace        = "portal-prod"
+          [32m+[0m[0m resource_version = (known after apply)
+          [32m+[0m[0m uid              = (known after apply)
+        }
+
+      [32m+[0m[0m spec {
+          [32m+[0m[0m allocate_load_balancer_node_ports = true
+          [32m+[0m[0m cluster_ip                        = (known after apply)
+          [32m+[0m[0m cluster_ips                       = (known after apply)
+          [32m+[0m[0m external_traffic_policy           = (known after apply)
+          [32m+[0m[0m health_check_node_port            = (known after apply)
+          [32m+[0m[0m internal_traffic_policy           = (known after apply)
+          [32m+[0m[0m ip_families                       = (known after apply)
+          [32m+[0m[0m ip_family_policy                  = (known after apply)
+          [32m+[0m[0m publish_not_ready_addresses       = false
+          [32m+[0m[0m selector                          = {
+              [32m+[0m[0m "app" = "result-service"
+            }
+          [32m+[0m[0m session_affinity                  = "None"
+          [32m+[0m[0m type                              = "ClusterIP"
+
+          [32m+[0m[0m port {
+              [32m+[0m[0m node_port   = (known after apply)
+              [32m+[0m[0m port        = 3002
+              [32m+[0m[0m protocol    = "TCP"
+              [32m+[0m[0m target_port = "3002"
+            }
+        }
+    }
+
+[1mPlan:[0m 16 to add, 0 to change, 0 to destroy.
+[0m
+Changes to Outputs:
+  [32m+[0m[0m admin_service_name  = "admin-service"
+  [32m+[0m[0m auth_service_name   = "auth-service"
+  [32m+[0m[0m configmap_name      = "app-config"
+  [32m+[0m[0m grade_service_name  = "grade-service"
+  [32m+[0m[0m namespace           = "portal-prod"
+  [32m+[0m[0m result_service_name = "result-service"
+[90m
+─────────────────────────────────────────────────────────────────────────────[0m
+
+Note: You didn't use the -out option to save this plan, so Terraform can't
+guarantee to take exactly these actions if you run "terraform apply" now.

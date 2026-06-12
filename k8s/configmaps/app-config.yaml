@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: portal-prod
+data:
+  DB_HOST: "postgres.data.svc.cluster.local"
+  DB_PORT: "5432"
+  DB_NAME: "securegarde"
+  DB_USER: "auth_service_user"
+  REDIS_HOST: "redis.data.svc.cluster.local"
+  REDIS_PORT: "6379"
+  NODE_ENV: "production"

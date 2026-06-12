@@ -1,0 +1,166 @@
+networks:
+  portal-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  postgres-data:
+  redis-data:
+
+services:
+
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: securegarde-postgres
+    environment:
+      POSTGRES_DB: securegarde
+      POSTGRES_USER: auth_service_user
+      POSTGRES_PASSWORD: SecurePass123!
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - portal-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U auth_service_user -d securegarde"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: securegarde-redis
+    command: redis-server --requirepass RedisPass123!
+    volumes:
+      - redis-data:/data
+    networks:
+      - portal-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "RedisPass123!", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Auth Service
+  auth-service:
+    build:
+      context: ./src/auth-service
+      dockerfile: Dockerfile
+    container_name: securegarde-auth
+    environment:
+      PORT: 3001
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: securegarde
+      DB_USER: auth_service_user
+      DB_PASSWORD: SecurePass123!
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: RedisPass123!
+      JWT_PRIVATE_KEY: ${JWT_PRIVATE_KEY}
+      JWT_PUBLIC_KEY: ${JWT_PUBLIC_KEY}
+    ports:
+      - "3001:3001"
+    networks:
+      - portal-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+
+  # Result Service
+  result-service:
+    build:
+      context: ./src/result-service
+      dockerfile: Dockerfile
+    container_name: securegarde-result
+    environment:
+      PORT: 3002
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: securegarde
+      DB_USER: auth_service_user
+      DB_PASSWORD: SecurePass123!
+      JWT_PUBLIC_KEY: ${JWT_PUBLIC_KEY}
+    ports:
+      - "3002:3002"
+    networks:
+      - portal-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+
+  # Grade Service
+  grade-service:
+    build:
+      context: ./src/grade-service
+      dockerfile: Dockerfile
+    container_name: securegarde-grade
+    environment:
+      PORT: 3003
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: securegarde
+      DB_USER: auth_service_user
+      DB_PASSWORD: SecurePass123!
+      JWT_PUBLIC_KEY: ${JWT_PUBLIC_KEY}
+    ports:
+      - "3003:3003"
+    networks:
+      - portal-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+
+  # Admin Service
+  admin-service:
+    build:
+      context: ./src/admin-service
+      dockerfile: Dockerfile
+    container_name: securegarde-admin
+    environment:
+      PORT: 3004
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: securegarde
+      DB_USER: auth_service_user
+      DB_PASSWORD: SecurePass123!
+      JWT_PUBLIC_KEY: ${JWT_PUBLIC_KEY}
+    ports:
+      - "3004:3004"
+    networks:
+      - portal-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp

@@ -1,0 +1,10 @@
+NAME              STATUS   AGE
+data              Active   11m
+default           Active   14m
+kube-node-lease   Active   14m
+kube-public       Active   14m
+kube-system       Active   14m
+kyverno           Active   5m20s
+monitoring        Active   11m
+portal-prod       Active   11m
+security          Active   11m

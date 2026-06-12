@@ -1,0 +1,184 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="GB489GVfTwrq-EnJ9G7G">
+    <mxGraphModel dx="1288" dy="830" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=24;fontStyle=1;fontColor=#1a1a2e;" value="Zero Trust Network Architecture — SecureGrade Portal" vertex="1">
+          <mxGeometry height="46" width="1600" x="205" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontColor=#555555;" value="Every request verified · No implicit trust · Least-privilege access enforced at every hop" vertex="1">
+          <mxGeometry height="24" width="1600" x="205" y="66" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-3" parent="1" style="rounded=1;arcSize=2;fillColor=#FFEBEE;strokeColor=#C62828;strokeWidth=2;dashed=0;" value="" vertex="1">
+          <mxGeometry height="220" width="1050" x="480" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-4" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=15;fontStyle=1;fontColor=#C62828;" value="ZONE 1 — UNTRUSTED · Internet" vertex="1">
+          <mxGeometry height="28" width="500" x="490" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-5" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#C62828;" value="No trust by default — all traffic treated as hostile" vertex="1">
+          <mxGeometry height="20" width="500" x="490" y="148" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-6" parent="1" style="shape=mxgraph.c4.person2;whiteSpace=wrap;html=1;fillColor=#FFCDD2;strokeColor=#C62828;fontColor=#B71C1C;align=center;verticalAlign=top;spacingTop=38;fontSize=11;fontStyle=1;" value="&lt;b&gt;Student Browser&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[External Client]&lt;br/&gt;Views results, downloads transcripts&lt;/font&gt;" vertex="1">
+          <mxGeometry height="162" width="150" x="714" y="158" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-7" parent="1" style="shape=mxgraph.c4.person2;whiteSpace=wrap;html=1;fillColor=#FFCDD2;strokeColor=#C62828;fontColor=#B71C1C;align=center;verticalAlign=top;spacingTop=38;fontSize=11;fontStyle=1;" value="&lt;b&gt;Teacher Browser&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[External Client]&lt;br/&gt;Uploads grades, manages courses&lt;/font&gt;" vertex="1">
+          <mxGeometry height="160" width="150" x="940" y="159" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-8" parent="1" style="shape=mxgraph.c4.person2;whiteSpace=wrap;html=1;fillColor=#FFCDD2;strokeColor=#C62828;fontColor=#B71C1C;align=center;verticalAlign=top;spacingTop=38;fontSize=11;fontStyle=1;" value="&lt;b&gt;Admin Browser&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[External Client]&lt;br/&gt;Manages users, approves grades&lt;/font&gt;" vertex="1">
+          <mxGeometry height="160" width="150" x="1160" y="158" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-9" parent="1" style="text;html=1;strokeColor=#C62828;fillColor=#FFCDD2;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#C62828;rounded=1;arcSize=20;" value="⚠ Never Trust · Always Verify" vertex="1">
+          <mxGeometry height="30" width="240" x="1280" y="117" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-10" edge="1" parent="1" style="edgeStyle=none;html=1;endArrow=block;endFill=1;strokeColor=#E65100;fontColor=#E65100;fontSize=11;fontStyle=1;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=3;" value="HTTPS · TLS 1.3 only · No plaintext permitted">
+          <mxGeometry relative="1" x="1030" y="330" as="geometry">
+            <mxPoint x="1050" y="332" as="sourcePoint" />
+            <mxPoint x="1050" y="406" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-11" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;fontStyle=3;fontColor=#E65100;" value="&quot;Never Trust — Always Verify&quot;" vertex="1">
+          <mxGeometry height="20" width="380" x="864" y="344" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-12" parent="1" style="rounded=1;arcSize=2;fillColor=#FFF3E0;strokeColor=#E65100;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="230" width="1050" x="480" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-13" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=15;fontStyle=1;fontColor=#E65100;" value="ZONE 2 — DMZ · Perimeter Security" vertex="1">
+          <mxGeometry height="28" width="600" x="490" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-14" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#E65100;" value="All traffic inspected · JWT verified here · Rate limited · TLS terminated" vertex="1">
+          <mxGeometry height="20" width="700" x="490" y="448" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE0B2;strokeColor=#E65100;fontColor=#BF360C;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;arcSize=6;" value="&lt;b&gt;WAF&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[Web Application Firewall]&lt;br/&gt;OWASP Top 10 filtering&lt;br/&gt;SQL injection prevention&lt;/font&gt;" vertex="1">
+          <mxGeometry height="130" width="210" x="530" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-16" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE0B2;strokeColor=#E65100;fontColor=#BF360C;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;arcSize=6;" value="&lt;b&gt;API Gateway&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[Nginx / Kong]&lt;br/&gt;Request routing,&lt;br/&gt;JWT validation entry&lt;/font&gt;" vertex="1">
+          <mxGeometry height="130" width="210" x="780" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE0B2;strokeColor=#E65100;fontColor=#BF360C;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;arcSize=6;" value="&lt;b&gt;Rate Limiter&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[Kong Plugin]&lt;br/&gt;Per-IP + per-user&lt;br/&gt;sliding window limits&lt;/font&gt;" vertex="1">
+          <mxGeometry height="130" width="210" x="1030" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-18" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE0B2;strokeColor=#E65100;fontColor=#BF360C;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;arcSize=6;" value="&lt;b&gt;TLS Termination&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[Nginx]&lt;br/&gt;TLS 1.3 enforcement,&lt;br/&gt;cert pinning, HSTS&lt;/font&gt;" vertex="1">
+          <mxGeometry height="130" width="210" x="1275" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-19" parent="1" style="text;html=1;strokeColor=#E65100;fillColor=#FFE0B2;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#E65100;rounded=1;arcSize=20;" value="✓ Verify Identity Before Every Request" vertex="1">
+          <mxGeometry height="30" width="340" x="1180" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-20" edge="1" parent="1" style="edgeStyle=none;html=1;endArrow=block;endFill=1;strokeColor=#F9A825;fontColor=#F57F17;fontSize=11;fontStyle=1;labelBackgroundColor=#ffffff;strokeWidth=3;" value="Verified JWT + mTLS · Identity confirmed · Mutual certificate auth">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1050" y="642" as="sourcePoint" />
+            <mxPoint x="1050" y="716" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-21" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;fontStyle=3;fontColor=#F57F17;" value="&quot;Verify Identity Before Every Request&quot;" vertex="1">
+          <mxGeometry height="20" width="420" x="840" y="654" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-22" parent="1" style="rounded=1;arcSize=2;fillColor=#FFFDE7;strokeColor=#F9A825;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="240" width="1200" x="370" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-23" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=15;fontStyle=1;fontColor=#F57F17;" value="ZONE 3 — APPLICATION · Zero Trust Enforced" vertex="1">
+          <mxGeometry height="28" width="700" x="380" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-24" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#F57F17;" value="mTLS between all services · RBAC/ABAC enforced · Micro-segmentation · No lateral movement" vertex="1">
+          <mxGeometry height="20" width="800" x="380" y="758" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-25" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e4d78;strokeColor=#0d2b4e;fontColor=#ffffff;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;arcSize=6;" value="&lt;b&gt;Auth Service&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[Node.js]&lt;br/&gt;mTLS + JWT validation&lt;br/&gt;MFA · session mgmt&lt;/font&gt;" vertex="1">
+          <mxGeometry height="160" width="210" x="390" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-26" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e4d78;strokeColor=#0d2b4e;fontColor=#ffffff;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;arcSize=6;" value="&lt;b&gt;Result Service&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[Node.js]&lt;br/&gt;mTLS + RBAC/ABAC&lt;br/&gt;Grade viewing enforced&lt;/font&gt;" vertex="1">
+          <mxGeometry height="160" width="210" x="630" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-27" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e4d78;strokeColor=#0d2b4e;fontColor=#ffffff;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;arcSize=6;" value="&lt;b&gt;Grade Service&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[Node.js]&lt;br/&gt;mTLS + input validation&lt;br/&gt;CSV schema check&lt;/font&gt;" vertex="1">
+          <mxGeometry height="160" width="210" x="864" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-28" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e4d78;strokeColor=#0d2b4e;fontColor=#ffffff;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;arcSize=6;" value="&lt;b&gt;Admin Service&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[Node.js]&lt;br/&gt;mTLS + step-up auth&lt;br/&gt;Privileged actions only&lt;/font&gt;" vertex="1">
+          <mxGeometry height="160" width="210" x="1100" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-29" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e4d78;strokeColor=#0d2b4e;fontColor=#ffffff;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;arcSize=6;" value="&lt;b&gt;Notification Service&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[Node.js]&lt;br/&gt;mTLS + rate limiting&lt;br/&gt;Email/SMS dispatch&lt;/font&gt;" vertex="1">
+          <mxGeometry height="160" width="210" x="1335" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-30" parent="1" style="text;html=1;strokeColor=#F9A825;fillColor=#FFFDE7;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#F57F17;rounded=1;arcSize=20;" value="🔒 Least Privilege Access Only" vertex="1">
+          <mxGeometry height="30" width="190" x="1330" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-31" edge="1" parent="1" source="lcuvjVuU_-KIKevFG1HO-22" style="edgeStyle=none;html=1;endArrow=block;endFill=1;strokeColor=#388E3C;fontColor=#2E7D32;fontSize=11;fontStyle=1;labelBackgroundColor=#ffffff;strokeWidth=3;exitX=0.567;exitY=1.006;exitDx=0;exitDy=0;exitPerimeter=0;" value="mTLS + least-privilege credentials · Short-lived tokens from Vault · No standing access">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1050" y="982" as="sourcePoint" />
+            <mxPoint x="1050" y="1056" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-33" parent="1" style="rounded=1;arcSize=2;fillColor=#E8F5E9;strokeColor=#388E3C;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="210" width="1200" x="370" y="1060" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-32" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;fontStyle=3;fontColor=#2E7D32;" value="&quot;Least Privilege Access Only&quot;" vertex="1">
+          <mxGeometry height="20" width="380" x="950" y="970" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-34" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=15;fontStyle=1;fontColor=#2E7D32;" value="ZONE 4 — DATA · Most Trusted" vertex="1">
+          <mxGeometry height="28" width="600" x="380" y="1072" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-35" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#2E7D32;" value="No direct external access · mTLS enforced · Encrypted at rest · Vault-issued credentials only" vertex="1">
+          <mxGeometry height="20" width="800" x="380" y="1098" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-36" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=18;fillColor=#A5D6A7;strokeColor=#388E3C;fontColor=#1B5E20;align=center;verticalAlign=middle;spacingTop=16;fontSize=12;fontStyle=1;" value="&lt;b&gt;PostgreSQL&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[Database]&lt;br/&gt;Persistent data storage&lt;br/&gt;Row-level security&lt;/font&gt;" vertex="1">
+          <mxGeometry height="129" width="190" x="500" y="1121" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-37" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=18;fillColor=#A5D6A7;strokeColor=#388E3C;fontColor=#1B5E20;align=center;verticalAlign=middle;spacingTop=16;fontSize=12;fontStyle=1;" value="&lt;b&gt;Redis&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[Cache]&lt;br/&gt;Session and&lt;br/&gt;token storage&lt;/font&gt;" vertex="1">
+          <mxGeometry height="132" width="180" x="714" y="1121" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-38" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#A5D6A7;strokeColor=#388E3C;fontColor=#1B5E20;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;arcSize=6;" value="&lt;b&gt;Apache Kafka&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[Event Bus]&lt;br/&gt;Async event streaming&lt;br/&gt;TLS encrypted topics&lt;/font&gt;" vertex="1">
+          <mxGeometry height="124" width="170" x="910" y="1126" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-39" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b71c1c;strokeColor=#7f0000;fontColor=#ffffff;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;arcSize=6;" value="&lt;b&gt;HashiCorp Vault&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[Secrets Manager]&lt;br/&gt;Dynamic secrets,&lt;br/&gt;short-lived credentials&lt;/font&gt;" vertex="1">
+          <mxGeometry height="124" width="180" x="1100" y="1126" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-40" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=18;fillColor=#A5D6A7;strokeColor=#388E3C;fontColor=#1B5E20;align=center;verticalAlign=middle;spacingTop=16;fontSize=12;fontStyle=1;" value="&lt;b&gt;MinIO&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[Object Storage]&lt;br/&gt;Transcript PDF storage&lt;br/&gt;AES-256 encrypted&lt;/font&gt;" vertex="1">
+          <mxGeometry height="134" width="183" x="1307" y="1126" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-41" parent="1" style="text;html=1;strokeColor=#388E3C;fillColor=#C8E6C9;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#2E7D32;rounded=1;arcSize=20;" value="✓ Assume Breach · Continuous Monitoring" vertex="1">
+          <mxGeometry height="30" width="280" x="1285" y="1068" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-42" parent="1" style="text;html=1;strokeColor=#C62828;fillColor=#FFCDD2;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#C62828;rounded=1;arcSize=20;" value="✗ No direct access" vertex="1">
+          <mxGeometry height="26" width="160" x="1360" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-43" parent="1" style="text;html=1;strokeColor=#C62828;fillColor=#FFCDD2;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#C62828;rounded=1;arcSize=20;" value="✗ No direct access" vertex="1">
+          <mxGeometry height="26" width="160" x="1405" y="1030" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-44" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDE7F6;strokeColor=#4527A0;strokeWidth=1;arcSize=4;" value="" vertex="1">
+          <mxGeometry height="170" width="1500" x="230" y="1340" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-45" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#4527A0;" value="Zero Trust Principles" vertex="1">
+          <mxGeometry height="28" width="400" x="240" y="1356" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-46" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b71c1c;strokeColor=#7f0000;fontColor=#ffffff;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;arcSize=10;" value="1 · Never trust, always verify" vertex="1">
+          <mxGeometry height="88" width="290" x="240" y="1390" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-47" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=11;fontColor=#4527A0;" value="Every request must be authenticated and authorized, regardless of source network or prior session." vertex="1">
+          <mxGeometry height="60" width="290" x="520" y="1340" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-48" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E65100;strokeColor=#BF360C;fontColor=#ffffff;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;arcSize=10;" value="2 · Least privilege access" vertex="1">
+          <mxGeometry height="88" width="290" x="535" y="1390" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-49" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=11;fontColor=#4527A0;" value="Services and users get only the minimum permissions needed. Short-lived Vault credentials enforced." vertex="1">
+          <mxGeometry height="60" width="290" x="1010" y="1340" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-50" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F9A825;strokeColor=#F57F17;fontColor=#4E342E;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;arcSize=10;" value="3 · Assume breach" vertex="1">
+          <mxGeometry height="88" width="290" x="832" y="1390" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-51" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=11;fontColor=#4527A0;" value="Design as if attackers are already inside. Audit every access. Limit blast radius via micro-segmentation." vertex="1">
+          <mxGeometry height="60" width="290" x="340" y="1470" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-52" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e4d78;strokeColor=#0d2b4e;fontColor=#ffffff;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;arcSize=10;" value="4 · Micro-segmentation" vertex="1">
+          <mxGeometry height="88" width="290" x="1130" y="1390" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-53" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=11;fontColor=#4527A0;" value="Network partitioned into trust zones. Services cannot communicate laterally across zones without verification." vertex="1">
+          <mxGeometry height="60" width="290" x="860" y="1470" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-54" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2E7D32;strokeColor=#1B5E20;fontColor=#ffffff;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;arcSize=10;" value="5 · Continuous monitoring" vertex="1">
+          <mxGeometry height="88" width="290" x="1430" y="1390" as="geometry" />
+        </mxCell>
+        <mxCell id="lcuvjVuU_-KIKevFG1HO-55" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=11;fontColor=#4527A0;" value="All access logged to Loki. Anomaly detection via SIEM. Alerts on policy violations in real-time." vertex="1">
+          <mxGeometry height="60" width="300" x="1350" y="1470" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

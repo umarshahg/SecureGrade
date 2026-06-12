@@ -1,0 +1,117 @@
+# Policy 1: Require non-root user
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: require-non-root
+spec:
+  validationFailureAction: Enforce
+  rules:
+    - name: check-non-root
+      match:
+        resources:
+          kinds:
+            - Pod
+          namespaces:
+            - portal-prod
+      validate:
+        message: "Containers must run as non-root user"
+        pattern:
+          spec:
+            securityContext:
+              runAsNonRoot: true
+---
+# Policy 2: Require read-only filesystem
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: require-readonly-filesystem
+spec:
+  validationFailureAction: Enforce
+  rules:
+    - name: check-readonly
+      match:
+        resources:
+          kinds:
+            - Pod
+          namespaces:
+            - portal-prod
+      validate:
+        message: "Containers must use read-only filesystem"
+        pattern:
+          spec:
+            containers:
+              - securityContext:
+                  readOnlyRootFilesystem: true
+---
+# Policy 3: Disallow privilege escalation
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: disallow-privilege-escalation
+spec:
+  validationFailureAction: Enforce
+  rules:
+    - name: check-privilege-escalation
+      match:
+        resources:
+          kinds:
+            - Pod
+          namespaces:
+            - portal-prod
+      validate:
+        message: "Privilege escalation is not allowed"
+        pattern:
+          spec:
+            containers:
+              - securityContext:
+                  allowPrivilegeEscalation: false
+---
+# Policy 4: Require resource limits
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: require-resource-limits
+spec:
+  validationFailureAction: Enforce
+  rules:
+    - name: check-limits
+      match:
+        resources:
+          kinds:
+            - Pod
+          namespaces:
+            - portal-prod
+      validate:
+        message: "Resource limits must be set"
+        pattern:
+          spec:
+            containers:
+              - resources:
+                  limits:
+                    memory: "?*"
+                    cpu: "?*"
+---
+# Policy 5: Drop all capabilities
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: drop-all-capabilities
+spec:
+  validationFailureAction: Enforce
+  rules:
+    - name: check-capabilities
+      match:
+        resources:
+          kinds:
+            - Pod
+          namespaces:
+            - portal-prod
+      validate:
+        message: "All capabilities must be dropped"
+        pattern:
+          spec:
+            containers:
+              - securityContext:
+                  capabilities:
+                    drop:
+                      - ALL

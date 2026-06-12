@@ -1,0 +1,23 @@
+NAME                                 READY   STATUS    RESTARTS   AGE
+pod/admin-service-7668f7d96c-cvndk   1/1     Running   0          10m
+pod/auth-service-5757965bf6-wmdn7    1/1     Running   0          10m
+pod/grade-service-79f54c8455-5pw5s   1/1     Running   0          10m
+pod/result-service-bcbd555c5-fwg4m   1/1     Running   0          10m
+
+NAME                     TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
+service/admin-service    ClusterIP   10.109.240.198   <none>        3004/TCP   10m
+service/auth-service     ClusterIP   10.110.22.227    <none>        3001/TCP   10m
+service/grade-service    ClusterIP   10.102.2.27      <none>        3003/TCP   10m
+service/result-service   ClusterIP   10.98.148.195    <none>        3002/TCP   10m
+
+NAME                             READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/admin-service    1/1     1            1           10m
+deployment.apps/auth-service     1/1     1            1           10m
+deployment.apps/grade-service    1/1     1            1           10m
+deployment.apps/result-service   1/1     1            1           10m
+
+NAME                                       DESIRED   CURRENT   READY   AGE
+replicaset.apps/admin-service-7668f7d96c   1         1         1       10m
+replicaset.apps/auth-service-5757965bf6    1         1         1       10m
+replicaset.apps/grade-service-79f54c8455   1         1         1       10m
+replicaset.apps/result-service-bcbd555c5   1         1         1       10m

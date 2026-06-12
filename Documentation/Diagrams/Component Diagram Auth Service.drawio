@@ -1,0 +1,207 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="_zc-1CbGooF82ifCswX8">
+    <mxGraphModel dx="1471" dy="949" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="wBT5tvc40YRR2_GhES0y-1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#1a1a2e;" value="C4 Level 3 — Component Diagram (Auth Service)" vertex="1">
+          <mxGeometry height="44" width="1100" x="440" y="28" as="geometry" />
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontColor=#555555;" value="SecureGrade — Student Result Portal · Zooming into Auth Service" vertex="1">
+          <mxGeometry height="24" width="1100" x="440" y="66" as="geometry" />
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b71c1c;strokeColor=#7f0000;fontColor=#ffffff;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;arcSize=6;" value="&lt;b&gt;HashiCorp Vault&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[External · Secrets Manager]&lt;br/&gt;Provides JWT RS256&lt;br/&gt;signing key pair&lt;/font&gt;" vertex="1">
+          <mxGeometry height="110" width="190" x="150" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-4" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=18;fillColor=#e65100;strokeColor=#a33900;fontColor=#ffffff;align=center;verticalAlign=middle;spacingTop=14;fontSize=12;fontStyle=1;" value="&lt;b&gt;PostgreSQL DB&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[External · Database]&lt;br/&gt;User credentials&lt;br/&gt;and profile storage&lt;/font&gt;" vertex="1">
+          <mxGeometry height="130" width="190" x="1610" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-5" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=18;fillColor=#e65100;strokeColor=#a33900;fontColor=#ffffff;align=center;verticalAlign=middle;spacingTop=14;fontSize=12;fontStyle=1;" value="&lt;b&gt;Redis Cache&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[External · Cache]&lt;br/&gt;Active sessions and&lt;br/&gt;token blacklist&lt;/font&gt;" vertex="1">
+          <mxGeometry height="130" width="190" x="1630" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#37474f;strokeColor=#1c2e35;fontColor=#ffffff;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;arcSize=6;" value="&lt;b&gt;Loki&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[External · Log Aggregator]&lt;br/&gt;Receives structured&lt;br/&gt;audit log streams&lt;/font&gt;" vertex="1">
+          <mxGeometry height="110" width="190" x="1600" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-7" parent="1" style="swimlane;startSize=40;fillColor=#f0f4ff;strokeColor=#1e4d78;strokeWidth=2;fontStyle=1;fontSize=16;fontColor=#1e4d78;align=left;verticalAlign=middle;spacingLeft=16;rounded=1;arcSize=1;" value="Auth Service" vertex="1">
+          <mxGeometry height="1060" width="1210" x="360" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-8" parent="wBT5tvc40YRR2_GhES0y-7" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e4d78;strokeColor=#0d2b4e;fontColor=#ffffff;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;arcSize=6;" value="&lt;b&gt;Login Controller&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[Component · Express Router]&lt;br/&gt;Handles POST /api/auth/login&lt;br/&gt;requests; orchestrates all&lt;br/&gt;downstream auth steps&lt;/font&gt;" vertex="1">
+          <mxGeometry height="110" width="230" x="520" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-9" parent="wBT5tvc40YRR2_GhES0y-7" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e4d78;strokeColor=#0d2b4e;fontColor=#ffffff;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;arcSize=6;" value="&lt;b&gt;MFA Controller&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[Component · Express Router]&lt;br/&gt;Handles TOTP verification&lt;br/&gt;step in MFA flow&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="230" x="160" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-10" parent="wBT5tvc40YRR2_GhES0y-7" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2d6ea8;strokeColor=#1a4f80;fontColor=#ffffff;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;arcSize=6;" value="&lt;b&gt;Password Handler&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[Component · Library]&lt;br/&gt;Bcrypt hashing and&lt;br/&gt;credential verification&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="230" x="160" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-11" parent="wBT5tvc40YRR2_GhES0y-7" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2d6ea8;strokeColor=#1a4f80;fontColor=#ffffff;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;arcSize=6;" value="&lt;b&gt;TOTP Validator&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[Component · Library]&lt;br/&gt;Validates time-based&lt;br/&gt;OTP codes (RFC 6238)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="230" x="160" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-12" parent="wBT5tvc40YRR2_GhES0y-7" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2d6ea8;strokeColor=#1a4f80;fontColor=#ffffff;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;arcSize=6;" value="&lt;b&gt;JWT Generator&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[Component · Library]&lt;br/&gt;Issues signed RS256 JWT&lt;br/&gt;access and refresh tokens&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="230" x="520" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-13" parent="wBT5tvc40YRR2_GhES0y-7" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2d6ea8;strokeColor=#1a4f80;fontColor=#ffffff;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;arcSize=6;" value="&lt;b&gt;Session Manager&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[Component · Service]&lt;br/&gt;Creates and invalidates&lt;br/&gt;Redis sessions (TTL-based)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="230" x="520" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-14" parent="wBT5tvc40YRR2_GhES0y-7" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2d6ea8;strokeColor=#1a4f80;fontColor=#ffffff;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;arcSize=6;" value="&lt;b&gt;Audit Logger&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[Component · Middleware]&lt;br/&gt;Logs all auth events with&lt;br/&gt;IP address and timestamp&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="230" x="520" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-15" parent="wBT5tvc40YRR2_GhES0y-7" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2d6ea8;strokeColor=#1a4f80;fontColor=#ffffff;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;arcSize=6;" value="&lt;b&gt;Token Blacklist&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px;font-weight:normal&#39;&gt;[Component · Service]&lt;br/&gt;Tracks invalidated JWT&lt;br/&gt;tokens in Redis (jti set)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="100" width="230" x="942" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-16" edge="1" parent="wBT5tvc40YRR2_GhES0y-7" source="wBT5tvc40YRR2_GhES0y-8" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeColor=#1e4d78;fontColor=#1e4d78;fontSize=10;labelBackgroundColor=#f0f4ff;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.829;entryY=-0.027;entryDx=0;entryDy=0;entryPerimeter=0;" target="wBT5tvc40YRR2_GhES0y-10" value="verify credentials">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="430" y="135" />
+              <mxPoint x="430" y="500" />
+              <mxPoint x="351" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-23" parent="wBT5tvc40YRR2_GhES0y-7" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#aaaaaa;arcSize=3;" value="" vertex="1">
+          <mxGeometry height="220" width="290" x="130" y="830" as="geometry" />
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-17" edge="1" parent="wBT5tvc40YRR2_GhES0y-7" source="wBT5tvc40YRR2_GhES0y-8" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeColor=#1e4d78;fontColor=#1e4d78;fontSize=10;labelBackgroundColor=#f0f4ff;exitX=0;exitY=0.7;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="wBT5tvc40YRR2_GhES0y-9" value="trigger MFA step">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="440" y="156" />
+              <mxPoint x="275" y="156" />
+              <mxPoint x="275" y="300" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-18" edge="1" parent="wBT5tvc40YRR2_GhES0y-7" source="wBT5tvc40YRR2_GhES0y-9" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeColor=#2d6ea8;fontColor=#2d6ea8;fontSize=10;labelBackgroundColor=#f0f4ff;" target="wBT5tvc40YRR2_GhES0y-11" value="validate OTP code">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="275" y="450" />
+              <mxPoint x="130" y="450" />
+              <mxPoint x="130" y="690" />
+              <mxPoint x="275" y="690" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-19" edge="1" parent="wBT5tvc40YRR2_GhES0y-7" source="wBT5tvc40YRR2_GhES0y-8" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeColor=#1e4d78;fontColor=#1e4d78;fontSize=10;labelBackgroundColor=#f0f4ff;" target="wBT5tvc40YRR2_GhES0y-12" value="request token issuance">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-20" edge="1" parent="wBT5tvc40YRR2_GhES0y-7" source="wBT5tvc40YRR2_GhES0y-12" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeColor=#2d6ea8;fontColor=#2d6ea8;fontSize=10;labelBackgroundColor=#f0f4ff;" target="wBT5tvc40YRR2_GhES0y-15" value="register token jti">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="800" y="340" />
+              <mxPoint x="800" y="340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-21" edge="1" parent="wBT5tvc40YRR2_GhES0y-7" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeColor=#1e4d78;fontColor=#1e4d78;fontSize=10;labelBackgroundColor=#f0f4ff;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" value="create session">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="680" y="230" />
+              <mxPoint x="780" y="230" />
+              <mxPoint x="780" y="500" />
+              <mxPoint x="680" y="500" />
+            </Array>
+            <mxPoint x="680" y="190" as="sourcePoint" />
+            <mxPoint x="680" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-22" edge="1" parent="wBT5tvc40YRR2_GhES0y-7" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeColor=#1e4d78;fontColor=#1e4d78;fontSize=10;labelBackgroundColor=#f0f4ff;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" value="emit auth event">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="725" y="210" />
+              <mxPoint x="805" y="210" />
+              <mxPoint x="805" y="680" />
+              <mxPoint x="660" y="680" />
+            </Array>
+            <mxPoint x="725" y="190" as="sourcePoint" />
+            <mxPoint x="660" y="700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-24" parent="wBT5tvc40YRR2_GhES0y-7" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=13;" value="&lt;b&gt;Legend&lt;/b&gt;" vertex="1">
+          <mxGeometry height="24" width="380" x="140" y="830" as="geometry" />
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-25" parent="wBT5tvc40YRR2_GhES0y-7" style="rounded=1;fillColor=#1e4d78;strokeColor=#0d2b4e;arcSize=6;" value="" vertex="1">
+          <mxGeometry height="20" width="36" x="144" y="870" as="geometry" />
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-26" parent="wBT5tvc40YRR2_GhES0y-7" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;" value="Controller component (Express router)" vertex="1">
+          <mxGeometry height="20" width="340" x="190" y="870" as="geometry" />
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-27" parent="wBT5tvc40YRR2_GhES0y-7" style="rounded=1;fillColor=#2d6ea8;strokeColor=#1a4f80;arcSize=6;" value="" vertex="1">
+          <mxGeometry height="20" width="36" x="144" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-28" parent="wBT5tvc40YRR2_GhES0y-7" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;" value="Handler / Validator / Service" vertex="1">
+          <mxGeometry height="20" width="340" x="190" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-29" parent="wBT5tvc40YRR2_GhES0y-7" style="rounded=1;fillColor=#b71c1c;strokeColor=#7f0000;arcSize=6;" value="" vertex="1">
+          <mxGeometry height="20" width="36" x="144" y="930" as="geometry" />
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-30" parent="wBT5tvc40YRR2_GhES0y-7" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;" value="Secrets manager (Vault)" vertex="1">
+          <mxGeometry height="20" width="340" x="190" y="930" as="geometry" />
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-31" parent="wBT5tvc40YRR2_GhES0y-7" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=8;fillColor=#e65100;strokeColor=#a33900;" value="" vertex="1">
+          <mxGeometry height="24" width="36" x="144" y="960" as="geometry" />
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-32" parent="wBT5tvc40YRR2_GhES0y-7" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;" value="Database / cache (cylinder)" vertex="1">
+          <mxGeometry height="20" width="340" x="190" y="964" as="geometry" />
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-33" parent="wBT5tvc40YRR2_GhES0y-7" style="rounded=1;fillColor=#37474f;strokeColor=#1c2e35;arcSize=50;" value="" vertex="1">
+          <mxGeometry height="20" width="36" x="144" y="1000" as="geometry" />
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-34" parent="wBT5tvc40YRR2_GhES0y-7" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;" value="Log aggregator (Loki)" vertex="1">
+          <mxGeometry height="20" width="340" x="190" y="1000" as="geometry" />
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-44" edge="1" parent="wBT5tvc40YRR2_GhES0y-7" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeColor=#e65100;fontColor=#e65100;fontSize=10;labelBackgroundColor=#ffffff;entryX=-0.004;entryY=0.222;entryDx=0;entryDy=0;entryPerimeter=0;" target="wBT5tvc40YRR2_GhES0y-5" value="SADD jti to blacklist [TLS]">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1250" y="350" />
+              <mxPoint x="1250" y="419" />
+              <mxPoint x="1269" y="419" />
+            </Array>
+            <mxPoint x="1172" y="350" as="sourcePoint" />
+            <mxPoint x="1260" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-45" edge="1" parent="wBT5tvc40YRR2_GhES0y-7" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeColor=#37474f;fontColor=#37474f;fontSize=10;labelBackgroundColor=#ffffff;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" value="stream log entry [HTTPS]">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1240" y="749.79" />
+              <mxPoint x="1240" y="749.79" />
+            </Array>
+            <mxPoint x="750" y="750" as="sourcePoint" />
+            <mxPoint x="1240" y="749.79" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-42" edge="1" parent="1" source="wBT5tvc40YRR2_GhES0y-10" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeColor=#e65100;fontColor=#e65100;fontSize=10;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.4;entryDx=0;entryDy=0;" target="wBT5tvc40YRR2_GhES0y-4" value="query user record [mTLS]">
+          <mxGeometry relative="1" x="-0.0776" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="770" y="670" />
+              <mxPoint x="770" y="750" />
+              <mxPoint x="1590" y="750" />
+              <mxPoint x="1590" y="252" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-43" edge="1" parent="1" source="wBT5tvc40YRR2_GhES0y-13" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeColor=#e65100;fontColor=#e65100;fontSize=10;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" value="SETEX session key [TLS]">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1110" y="636" />
+              <mxPoint x="1610" y="636" />
+              <mxPoint x="1610" y="600" />
+            </Array>
+            <mxPoint x="1630" y="600" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wBT5tvc40YRR2_GhES0y-46" edge="1" parent="1" source="wBT5tvc40YRR2_GhES0y-12" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=1;strokeColor=#b71c1c;fontColor=#b71c1c;fontSize=10;labelBackgroundColor=#ffffff;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="wBT5tvc40YRR2_GhES0y-3" value="fetch RS256 private key [mTLS]">
+          <mxGeometry relative="1" x="0.479" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="830" y="450" />
+              <mxPoint x="830" y="530" />
+              <mxPoint x="350" y="530" />
+              <mxPoint x="350" y="485" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

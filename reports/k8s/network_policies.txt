@@ -1,0 +1,6 @@
+NAME                   POD-SELECTOR         AGE
+allow-admin-ingress    app=admin-service    10m
+allow-auth-ingress     app=auth-service     10m
+allow-grade-ingress    app=grade-service    10m
+allow-result-ingress   app=result-service   10m
+default-deny-all       <none>               10m

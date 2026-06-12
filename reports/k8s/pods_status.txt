@@ -1,0 +1,5 @@
+NAME                             READY   STATUS    RESTARTS   AGE   IP           NODE       NOMINATED NODE   READINESS GATES
+admin-service-7668f7d96c-cvndk   1/1     Running   0          10m   10.244.0.6   minikube   <none>           <none>
+auth-service-5757965bf6-wmdn7    1/1     Running   0          10m   10.244.0.3   minikube   <none>           <none>
+grade-service-79f54c8455-5pw5s   1/1     Running   0          10m   10.244.0.4   minikube   <none>           <none>
+result-service-bcbd555c5-fwg4m   1/1     Running   0          10m   10.244.0.5   minikube   <none>           <none>

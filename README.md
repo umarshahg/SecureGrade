@@ -9,7 +9,7 @@
 | Name | Registration No | Role |
 |---|---|---|
 | Muhammad Umar Shah | SP23-BCT-040 | Lead Developer |
-| Muhammad Awais | SP23-BCT-040 | Security Analyst |
+| Muhammad Awais | SP23-BCT-008 | Security Analyst |
 | Muhammad Umair Nazir | SP23-BCT-038 | DevSecOps Engineer |
 
 **Instructor:** Muhammad Ahmad Nawaz
